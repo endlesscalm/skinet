@@ -1,7 +1,6 @@
 using API.Extensions;
 using API.Helper;
 using API.Middleware;
-using AutoMapper;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
