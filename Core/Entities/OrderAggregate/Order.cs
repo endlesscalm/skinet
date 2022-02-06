@@ -5,15 +5,18 @@ namespace Core.Entities.OrderAggregate
 {
     public class Order : BaseEntity
     {
+        private readonly decimal _deliveryMethodPrice;
+
         public Order()
         {
         }
 
-        public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress, DeliveryMethod deliveryMethod, decimal subtotal)
+        public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress, decimal deliveryMethodPrice, decimal subtotal)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
-            DeliveryMethod = deliveryMethod;
+            // DeliveryMethod = deliveryMethod;
+            _deliveryMethodPrice = deliveryMethodPrice;
             OrderItems = orderItems;
             Subtotal = subtotal;
         }
@@ -29,7 +32,8 @@ namespace Core.Entities.OrderAggregate
 
         public decimal GetTotal()
         { 
-            return Subtotal + DeliveryMethod.Price;
+            // return Subtotal + DeliveryMethod.Price;
+            return Subtotal + _deliveryMethodPrice;
         }
     
     }
