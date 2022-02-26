@@ -22,6 +22,10 @@ export class CheckoutPaymentComponent implements OnInit {
   }
 
   submitOrder() {
+    if (!this.checkoutForm.get('deliveryForm').valid) {
+      this.toastr.error('Please select delivery method');
+      return;
+    }
     const basket = this.basketService.getCurrentBasketValue();
     const orderToCreate = this.getOrderToCreate(basket);
     this.checkoutService.createOrder(orderToCreate).subscribe((order: IOrder) => {
